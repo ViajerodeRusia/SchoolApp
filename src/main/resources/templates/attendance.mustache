@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - School Attendance System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Attendance for {{className}}</h1>
+<h2>Date: {{date}}</h2>
+<form action="/attendance/save" method="POST">
+    <table>
+        <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#students}}
+            <tr>
+                <td>{{name}}</td>
+                <td>
+                    <select name="status">
+                        <option value="PRESENT">✓</option>
+                        <option value="SICK">S</option>
+                        <option value="EXCUSED">E</option>
+                    </select>
+                    <input type="hidden" name="studentId" value="{{id}}">
+                </td>
+            </tr>
+        {{/students}}
+        </tbody>
+    </table>
+    <input type="hidden" name="date" value="{{date}}">
+    <button type="submit">Save Attendance</button>
+</form>
+<script src="/js/main.js"></script>
+</body>
+</html>

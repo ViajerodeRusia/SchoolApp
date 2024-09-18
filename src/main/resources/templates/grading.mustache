@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading - School Attendance System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Grading for {{student.name}}</h1>
+<form action="/grading/save" method="POST">
+    <input type="hidden" name="studentId" value="{{student.id}}">
+    <label for="attendanceScore">Attendance Score (0-20):</label>
+    <input type="number" id="attendanceScore" name="attendanceScore" min="0" max="20" required>
+    <label for="participationScore">Participation Score (0-5):</label>
+    <input type="number" id="participationScore" name="participationScore" min="0" max="5" required>
+    <label for="term">Term:</label>
+    <select id="term" name="term" required>
+        <option value="Midterm">Midterm</option>
+        <option value="Final">Final</option>
+    </select>
+    <button type="submit">Save Grade</button>
+</form>
+<script src="/js/main.js"></script>
+</body>
+</html>
