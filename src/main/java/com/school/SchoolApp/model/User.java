@@ -26,8 +26,6 @@ public class User {
     private Role role;
 
     public enum Role {
-        TEACHER, STUDENT
+        ROLE_TEACHER, ROLE_STUDENT
     }
-
-    // Getters and setters
 }
