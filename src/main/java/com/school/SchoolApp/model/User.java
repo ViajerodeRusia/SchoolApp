@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 
 @Data
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
+@Check(constraints = "role IN ('TEACHER', 'STUDENT')")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +24,9 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Role role;
 
     public enum Role {
-        ROLE_TEACHER, ROLE_STUDENT
+        TEACHER, STUDENT
     }
 }

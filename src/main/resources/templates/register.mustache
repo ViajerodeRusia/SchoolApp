@@ -12,11 +12,12 @@
     <p class="error">{{error}}</p>
 {{/error}}
 <form action="/register" method="POST">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     <input type="text" name="username" placeholder="Username" required>
     <input type="password" name="password" placeholder="Password" required>
-    <select name="role" required>
-        <option value="ROLE_TEACHER">Teacher</option>
-        <option value="ROLE_STUDENT">Student</option>
+    <select id="role" name="role" required>
+        <option value="TEACHER">Teacher</option>
+        <option value="STUDENT">Student</option>
     </select>
     <button type="submit">Register</button>
 </form>

@@ -26,8 +26,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .permitAll()
-                )
-                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()));
+                );
 
         return http.build();
     }

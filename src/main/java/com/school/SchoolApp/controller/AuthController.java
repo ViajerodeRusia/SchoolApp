@@ -26,9 +26,11 @@ public class AuthController {
     }
 
     @GetMapping("/register")
-    public String registerPage(Model model) {
+    public String registerPage(Model model, HttpServletRequest request) {
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.addAttribute("_csrf", csrfToken);
         model.addAttribute("user", new User());
-        return "register";  // Explicitly specify the file extension
+        return "register";
     }
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user, Model model) {
