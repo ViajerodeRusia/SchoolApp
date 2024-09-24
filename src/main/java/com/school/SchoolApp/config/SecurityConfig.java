@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +21,7 @@ public class SecurityConfig {
                         .requestMatchers("/error").permitAll() // Allow access to the /error endpoint
                         .requestMatchers("/login", "/register").permitAll() // Allow access to login and register
                         .requestMatchers("/dashboard", "/attendance", "/students/manage", "/grading").authenticated() // Require authentication for these endpoints
+                        .requestMatchers("/students/add").hasRole("TEACHER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -28,6 +30,9 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll
+                )
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Use cookie-based CSRF token repository
                 );
 
         return http.build();

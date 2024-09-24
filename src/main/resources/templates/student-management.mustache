@@ -10,6 +10,7 @@
 <h1>Student Management</h1>
 <h2>Add New Student</h2>
 <form action="/students/add" method="POST">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
     <input type="text" name="name" placeholder="Student Name" required>
     <input type="number" name="mattayomLevel" placeholder="Mattayom Level" required>
     <input type="number" name="classNumber" placeholder="Class Number" required>
