@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/students")
@@ -30,6 +27,27 @@ public class StudentController {
     @PostMapping("/add")
     public String addStudent(@ModelAttribute Student student) {
         studentService.saveStudent(student);
+        return "redirect:/students/manage";
+    }
+
+    @RequestMapping("/edit/{id}")
+    public String editStudent(@PathVariable Long id, Model model, HttpServletRequest request) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        // Добавляем CSRF-токен в модель
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.addAttribute("_csrf", csrfToken);
+        return "edit-student"; // шаблон для редактирования студента
+    }
+
+    @PostMapping("/update")
+    public String updateStudent(@ModelAttribute Student student) {
+        studentService.saveStudent(student);
+        return "redirect:/students/manage";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
         return "redirect:/students/manage";
     }
 
