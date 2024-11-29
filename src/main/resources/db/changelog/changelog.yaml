@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dsiliukov
+      changes:
+        - sqlFile:
+            path: classpath:db/scripts/create_students_table.sql
+            splitStatements: false
+            endDelimiter: ";"
+  - changeSet:
+      id: 2
+      author: dsiliukov
+      changes:
+        - sqlFile:
+            path: classpath:db/scripts/create_attendance_table.sql
+            splitStatements: false
+            endDelimiter: ";"
+  - changeSet:
+      id: 3
+      author: dsiliukov
+      changes:
+        - sqlFile:
+            path: classpath:db/scripts/create_grades_table.sql
+            splitStatements: false
+            endDelimiter: ";"
+  - changeSet:
+      id: 4
+      author: dsiliukov
+      changes:
+        - sqlFile:
+            path: classpath:db/scripts/create_users_table.sql
+            splitStatements: false
+            endDelimiter: ";"
+  - changeSet:
+      id: 5
+      author: dsiliukov
+      changes:
+        - sqlFile:
+            path: classpath:db/scripts/add_users_role_check.sql
+            splitStatements: false
+            endDelimiter: ";"

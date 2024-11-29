@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student - School Attendance System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Edit Student</h1>
+<form action="/students/update" method="POST">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="hidden" name="id" value="{{student.id}}">
+    <label for="name">Student Name:</label>
+    <input type="text" id="name" name="name" value="{{student.name}}" required>
+    <label for="mattayomLevel">Mattayom Level:</label>
+    <input type="number" id="mattayomLevel" name="mattayomLevel" value="{{student.mattayomLevel}}" required>
+    <label for="classNumber">Class Number:</label>
+    <input type="number" id="classNumber" name="classNumber" value="{{student.classNumber}}" required>
+    <button type="submit">Update Student</button>
+</form>
+<a href="/students/manage">Cancel</a> <!-- Кнопка для отмены редактирования -->
+<script src="/js/main.js"></script>
+</body>
+</html>
